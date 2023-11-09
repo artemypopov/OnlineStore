@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "product")
+@Table(schema = "auth", name = "product")
 public class User {
 
     @Id
