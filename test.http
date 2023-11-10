@@ -1,0 +1,12 @@
+## Добавление товара
+POST http://localhost:8080/product/add
+Content-Type: application/json
+
+{
+  "name": "Дверь",
+  "description": "входная",
+  "category": "двери",
+  "price": 500.0,
+  "size;": "",
+  "addOptions": ""
+}
