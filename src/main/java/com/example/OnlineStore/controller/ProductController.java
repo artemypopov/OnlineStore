@@ -6,25 +6,23 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @Controller
 @ResponseBody
 @AllArgsConstructor
+@RequestMapping("/product")
 public class ProductController {
-
     private final ProductService productService;
 
-    @GetMapping("/product/{category}")
+    @GetMapping("/cat/{category}")
     public List<Product> getProductsByCategory(@PathVariable String category) {
         return productService.getProductsByCategory(category);
     }
 
-    @PostMapping(value = "create/product")
-    @ResponseBody
+    @PostMapping(value = "/add")
     public Product save(@RequestBody Product product) {
-        return productService.createProduct(product);
+         productService.addProduct(product);
+        return product;
     }
-
 }
