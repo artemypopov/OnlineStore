@@ -1,6 +1,7 @@
 package com.example.OnlineStore.service;
 
-import com.example.OnlineStore.model.Product;
+import com.example.OnlineStore.model.product.Product;
+import com.example.OnlineStore.model.product.ProductCategory;
 import com.example.OnlineStore.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,17 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+
     public List<Product> getProductsByCategory(String category) {
-        List<Product> products = new ArrayList<>();
-        products.addAll(productRepository.findByCategory(category));
-        return products;
+        return new ArrayList<>(productRepository.findByCategory(ProductCategory.valueOf(category)));
     }
 
     public Product addProduct(Product product) {
         productRepository.save(product);
         return product;
+    }
+
+    public List<Product> search(String name) {
+        return new ArrayList<>(productRepository.findByNameContaining(name));
     }
 }
