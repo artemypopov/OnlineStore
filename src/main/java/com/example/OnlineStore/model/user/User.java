@@ -2,11 +2,9 @@ package com.example.OnlineStore.model.user;
 
 import com.example.OnlineStore.model.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +26,7 @@ public class User {
     private String lastName;
     private String city;
     private String phoneNumber;
+    private String email;
     private boolean isActive;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

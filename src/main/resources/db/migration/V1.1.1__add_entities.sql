@@ -21,6 +21,7 @@ CREATE TABLE "t_user"
     last_name  VARCHAR(255),
     city         VARCHAR(255),
     phone_number VARCHAR(255),
+    email        VARCHAR(255),
     is_active  BOOLEAN                                 NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id)
 );
