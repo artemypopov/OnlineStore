@@ -74,11 +74,15 @@ Content-Type: application/json
 }
 
 ### Товары
-## Получить все товары по категории
+## Получение всех товаров по категории
 GET http://localhost:8080/product/cat/TILE
 Content-Type: application/json
 
 ### Товары
-## Искать все товары по части названия
+## Поиск товаров по части названия
 GET http://localhost:8080/product/search/Artens
 Content-Type: application/json
+
+### Товары
+## Получение все товары
+GET http://localhost:8080/product/all

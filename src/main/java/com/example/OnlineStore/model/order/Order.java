@@ -1,6 +1,5 @@
 package com.example.OnlineStore.model.order;
 
-import com.example.OnlineStore.model.product.Product;
 import com.example.OnlineStore.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;

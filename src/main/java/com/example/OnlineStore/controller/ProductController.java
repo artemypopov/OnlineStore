@@ -23,6 +23,11 @@ public class ProductController {
         return productService.getProductsByCategory(category);
     }
 
+    @GetMapping("/all")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
     @PostMapping(value = "/add")
     public Product addProduct(@RequestBody Product product) {
          productService.addProduct(product);

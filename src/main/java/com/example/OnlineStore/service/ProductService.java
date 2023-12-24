@@ -1,5 +1,6 @@
 package com.example.OnlineStore.service;
 
+import com.example.OnlineStore.model.order.Order;
 import com.example.OnlineStore.model.product.Product;
 import com.example.OnlineStore.model.product.ProductCategory;
 import com.example.OnlineStore.repository.ProductRepository;
@@ -25,5 +26,9 @@ public class ProductService {
 
     public List<Product> search(String name) {
         return new ArrayList<>(productRepository.findByNameContaining(name));
+    }
+
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(productRepository.findAll());
     }
 }

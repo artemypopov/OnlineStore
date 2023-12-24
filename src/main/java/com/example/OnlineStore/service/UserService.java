@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,6 +58,6 @@ public class UserService
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return new ArrayList<>(userRepository.findAll());
     }
 }
