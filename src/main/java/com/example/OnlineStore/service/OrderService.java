@@ -7,7 +7,6 @@ import com.example.OnlineStore.repository.OrderRepository;
 import com.example.OnlineStore.repository.ProductRepository;
 import com.example.OnlineStore.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.engine.internal.ManagedTypeHelper;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -28,6 +27,15 @@ public class OrderService {
         List<OrderProduct> orderProducts = processProducts(dto);
         saveOrder(order, orderProducts, dto.getTotalPrice());
         return order;
+    }
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        orderRepository.findAll().forEach(orders::add);
+        return orders;
+    }
+
+    public List<Order> getOrdersByUserId(Long id) {
+        return orderRepository.findByUserId(id);
     }
 
     private void processUser(Long userId, Order order) {
@@ -77,15 +85,5 @@ public class OrderService {
         order.setStatus(Status.PROCESSED);
         order.setOrderNumber(String.valueOf(Math.round(Math.random() * 1000000000)));
         orderRepository.save(order);
-    }
-
-    public List<Order> getAllOrders() {
-        List<Order> orders = new ArrayList<>();
-        orderRepository.findAll().forEach(orders::add);
-        return orders;
-    }
-
-    public List<Order> getOrdersByUserId(Long id) {
-        return orderRepository.findByUserId(id);
     }
 }
