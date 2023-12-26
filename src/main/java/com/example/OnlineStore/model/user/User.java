@@ -27,7 +27,7 @@ public class User {
     private String city;
     private String phoneNumber;
     private String email;
-    private boolean isActive;
+    private Boolean isActive;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Order> orders;

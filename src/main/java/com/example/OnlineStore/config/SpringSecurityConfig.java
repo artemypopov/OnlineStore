@@ -12,7 +12,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
@@ -21,13 +20,14 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/user/registration", "/auth/login", "/auth/logout").permitAll()
-                        .requestMatchers("/delete/**").hasRole("ADMIN")
-                        .requestMatchers("/create/**").hasAuthority("CREATOR")
-                        .anyRequest().authenticated())
-                .csrf().disable()
-                .formLogin(Customizer.withDefaults());
+                .authorizeHttpRequests(request ->
+                        request
+                                .requestMatchers("/user/registration", "/login", "/logout").permitAll()
+                                .requestMatchers("/order/create", "/user/current", "/order/current", "/product/search/**", "/product/cat/**", "/product/all").hasRole("USER")
+                                .requestMatchers("/order/all", "/user/all", "/user/get/**", "/order/get/**", "/product/add").hasRole("ADMIN")
+                                .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults())
+                .csrf().disable();
         return http.build();
     }
 }

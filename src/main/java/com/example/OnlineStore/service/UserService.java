@@ -5,8 +5,10 @@ import com.example.OnlineStore.model.user.User;
 import com.example.OnlineStore.model.user.UserRequestDTO;
 import com.example.OnlineStore.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -47,15 +49,23 @@ public class UserService implements UserDetailsService {
         user.setCity(userRq.getCity());
         user.setPassword(userRq.getPassword());
         user.setRoles(Collections.singleton(Role.USER));
-        user.setActive(true);
+        user.setIsActive(true);
         userRepository.save(user);
     }
 
-    public User getUser(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public User getCurrentUser() {
+        return userRepository.findByUsername(getAuthenticationInfo().getName());
     }
 
     public List<User> getAllUsers() {
         return new ArrayList<>(userRepository.findAll());
+    }
+
+    public Authentication getAuthenticationInfo() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 }
