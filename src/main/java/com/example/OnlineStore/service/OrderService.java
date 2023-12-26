@@ -20,6 +20,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final UserService userService;
 
     public Order createOrder(OrderRequestDTO dto) throws Exception {
         Order order = new Order();
@@ -28,6 +29,7 @@ public class OrderService {
         saveOrder(order, orderProducts, dto.getTotalPrice());
         return order;
     }
+
     public List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<>();
         orderRepository.findAll().forEach(orders::add);
@@ -36,6 +38,11 @@ public class OrderService {
 
     public List<Order> getOrdersByUserId(Long id) {
         return orderRepository.findByUserId(id);
+    }
+
+    public List<Order> getOrdersByCurrentUser() {
+        User user = userRepository.findByUsername(userService.getAuthenticationInfo().getName());
+        return orderRepository.findByUserId(user.getId());
     }
 
     private void processUser(Long userId, Order order) {

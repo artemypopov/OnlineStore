@@ -25,8 +25,13 @@ public class UserController {
     }
 
     @GetMapping("/get/{username}")
-    public User getUser(@PathVariable String username) {
-            return userService.getUser(username);
+    public User getByUsername (@PathVariable String username) {
+            return userService.getByUsername(username);
+    }
+
+    @GetMapping("/current")
+    public User getCurrentUser() {
+        return userService.getCurrentUser();
     }
 
     @GetMapping("/all")
