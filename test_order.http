@@ -2,9 +2,10 @@
 ## Создание заказа 1
 POST http://localhost:8080/order/create
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
-  "userId": "1",
+  "userId": "2",
   "totalPrice": 16120,
   "products": [
     {
@@ -22,6 +23,7 @@ Content-Type: application/json
 ## Создание заказа 2
 POST http://localhost:8080/order/create
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "userId": "2",
@@ -38,6 +40,7 @@ Content-Type: application/json
 ## Создание заказа 3
 POST http://localhost:8080/order/create
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "userId": "2",
@@ -53,9 +56,14 @@ Content-Type: application/json
 ### Заказы
 ## Получение всех заказов
 GET http://localhost:8080/order/all
-Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 ### Заказы
 ## Получение всех заказов пользователя по его id
-GET http://localhost:8080/order/get/by-user/2
-Content-Type: application/json
+GET http://localhost:8080/order/get/1
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
+
+### Заказы
+## Получение всех заказов для текущего авторизованного пользователя
+GET http://localhost:8080/order/current
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
