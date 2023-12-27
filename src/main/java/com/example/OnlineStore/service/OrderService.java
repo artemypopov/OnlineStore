@@ -25,7 +25,7 @@ public class OrderService {
     public Order createOrder(OrderRequestDTO dto) throws Exception {
         Order order = new Order();
         processUser(dto.getUserId(), order);
-        List<OrderProduct> orderProducts = processProducts(dto);
+        List<OrderProduct> orderProducts = processProducts(dto, order);
         saveOrder(order, orderProducts, dto.getTotalPrice());
         return order;
     }
@@ -50,7 +50,7 @@ public class OrderService {
         optionalUser.ifPresent(order::setUser);
     }
 
-    private List<OrderProduct> processProducts(OrderRequestDTO dto) throws Exception {
+    private List<OrderProduct> processProducts(OrderRequestDTO dto, Order order) throws Exception {
         List<OrderProduct> orderProducts = new ArrayList<>();
 
         for (ProductInOrder productInOrder : dto.getProducts()) {
@@ -60,7 +60,7 @@ public class OrderService {
             int countInOrder = productInOrder.getCount();
             validateProductAvailability(product, countInOrder);
             setProductCountInWarehouse(product, countInOrder);
-            OrderProduct orderProduct = createOrderProduct(product, countInOrder);
+            OrderProduct orderProduct = createOrderProduct(product, countInOrder, order);
             orderProducts.add(orderProduct);
         }
 
@@ -78,10 +78,11 @@ public class OrderService {
         productRepository.save(product);
     }
 
-    private OrderProduct createOrderProduct(Product product, int countInOrder) {
+    private OrderProduct createOrderProduct(Product product, int countInOrder, Order order) {
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setProduct(product);
         orderProduct.setCountInOrder(countInOrder);
+        orderProduct.setOrder(order);
         return orderProduct;
     }
 

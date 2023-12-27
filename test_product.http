@@ -2,6 +2,7 @@
 ## Добавление товара
 POST http://localhost:8080/product/add
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "name": "Дверь межкомнатная глухая массив дерева",
@@ -17,6 +18,7 @@ Content-Type: application/json
 ## Добавление товара
 POST http://localhost:8080/product/add
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "name": "Дверь межкомнатная остекленная Лайн 2 HardFlex",
@@ -32,6 +34,7 @@ Content-Type: application/json
 ## Добавление товара
 POST http://localhost:8080/product/add
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "name": "Дверь межкомнатная остекленная Легенда-28 полипропилен",
@@ -47,6 +50,7 @@ Content-Type: application/json
 ## Добавление товара
 POST http://localhost:8080/product/add
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "name": "Керамогранит Artens Dina",
@@ -62,6 +66,7 @@ Content-Type: application/json
 ## Добавление товара
 POST http://localhost:8080/product/add
 Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 {
   "name": "Керамогранит Alicante",
@@ -76,13 +81,14 @@ Content-Type: application/json
 ### Товары
 ## Получение всех товаров по категории
 GET http://localhost:8080/product/cat/TILE
-Content-Type: application/json
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 ### Товары
 ## Поиск товаров по части названия
-GET http://localhost:8080/product/search/Artens
-Content-Type: application/json
+GET http://localhost:8080/product/search/Керамогранит
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
 
 ### Товары
 ## Получение все товары
 GET http://localhost:8080/product/all
+Cookie: JSESSIONID=DB128A5629170C9788318A8B206AC444
