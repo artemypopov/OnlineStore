@@ -33,8 +33,7 @@ Content-Type: application/json
   "firstName": "Иван",
   "lastName": "Иванов",
   "password": "123456A",
-  "city": "Екатеринбург",
-  "username": "Ivan"
+  "city": "Екатеринбург"
 }
 
 ### Пользователи

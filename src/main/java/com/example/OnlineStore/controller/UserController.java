@@ -1,7 +1,7 @@
 package com.example.OnlineStore.controller;
 
 import com.example.OnlineStore.model.user.User;
-import com.example.OnlineStore.model.user.UserRequestDTO;
+import com.example.OnlineStore.model.user.UserRequest;
 import com.example.OnlineStore.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/registration")
-    public String registerUser(@RequestBody UserRequestDTO user) {
+    public String registerUser(@RequestBody UserRequest user) {
         try {
             userService.registerUser(user);
             return user.getUsername() + " is registered";

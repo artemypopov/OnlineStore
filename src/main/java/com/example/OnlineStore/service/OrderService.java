@@ -22,11 +22,11 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final UserService userService;
 
-    public Order createOrder(OrderRequestDTO dto) throws Exception {
+    public Order createOrder(OrderRequest request) throws Exception {
         Order order = new Order();
-        processUser(dto.getUserId(), order);
-        List<OrderProduct> orderProducts = processProducts(dto, order);
-        saveOrder(order, orderProducts, dto.getTotalPrice());
+        processUser(request.getUserId(), order);
+        List<OrderProduct> orderProducts = processProducts(request, order);
+        saveOrder(order, orderProducts, request.getTotalPrice());
         return order;
     }
 
@@ -50,10 +50,10 @@ public class OrderService {
         optionalUser.ifPresent(order::setUser);
     }
 
-    private List<OrderProduct> processProducts(OrderRequestDTO dto, Order order) throws Exception {
+    private List<OrderProduct> processProducts(OrderRequest request, Order order) throws Exception {
         List<OrderProduct> orderProducts = new ArrayList<>();
 
-        for (ProductInOrder productInOrder : dto.getProducts()) {
+        for (ProductInOrder productInOrder : request.getProducts()) {
             Optional<Product> optionalProduct = productRepository.findById(productInOrder.getId());
             Product product = optionalProduct.orElseThrow(() -> new Exception("Товар не найден"));
 
