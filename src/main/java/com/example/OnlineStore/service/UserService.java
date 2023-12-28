@@ -2,7 +2,7 @@ package com.example.OnlineStore.service;
 
 import com.example.OnlineStore.model.user.Role;
 import com.example.OnlineStore.model.user.User;
-import com.example.OnlineStore.model.user.UserRequestDTO;
+import com.example.OnlineStore.model.user.UserRequest;
 import com.example.OnlineStore.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -37,10 +37,13 @@ public class UserService implements UserDetailsService {
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.name())).collect(Collectors.toList());
     }
 
-    public void registerUser(UserRequestDTO userRq) throws Exception {
+    public void registerUser(UserRequest userRq) throws Exception {
         boolean userExists = userRepository.existsByUsername(userRq.getUsername());
         if (userExists) {
             throw new Exception("user exist");
+        }
+        if (userRq.getUsername() == null) {
+            throw new Exception("username must not be null");
         }
         User user = new User();
         user.setUsername(userRq.getUsername());

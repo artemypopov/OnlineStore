@@ -65,3 +65,6 @@ ALTER TABLE order_product
 ALTER TABLE order_product
     ADD CONSTRAINT FK_ORDER_PRODUCT_ON_PRODUCT FOREIGN KEY (product_id) REFERENCES t_product (id);
 
+INSERT INTO t_user (username, password, first_name, last_name, city, phone_number, email, is_active) VALUES ('Admin'::varchar(255), '123456A'::varchar(255), 'Админ'::varchar(255), 'Админов'::varchar(255), 'Екатеринбург'::varchar(255), null::varchar(255), null::varchar(255), true::boolean);
+INSERT INTO t_user_role (user_id, roles) VALUES (1::bigint, 'USER'::varchar(255));
+INSERT INTO t_user_role (user_id, roles) VALUES (1::bigint, 'ADMIN'::varchar(255));

@@ -1,11 +1,9 @@
 package com.example.OnlineStore.controller;
 
 import com.example.OnlineStore.model.order.Order;
-import com.example.OnlineStore.model.order.OrderRequestDTO;
+import com.example.OnlineStore.model.order.OrderRequest;
 import com.example.OnlineStore.service.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +22,9 @@ public class OrderController {
 
     @PostMapping(value = "/create")
     @ResponseBody
-    public Order save(@RequestBody OrderRequestDTO dto) {
+    public Order save(@RequestBody OrderRequest request) {
         try {
-            return orderService.createOrder(dto);
+            return orderService.createOrder(request);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
